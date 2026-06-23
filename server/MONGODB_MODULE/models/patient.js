@@ -2,9 +2,22 @@ const mongoose = require("mongoose");
 
 const patientSchema = new mongoose.Schema(
   {
+    status: {
+      type: String,
+      enum: ["OPEN", "CLOSED"],
+      default: "OPEN"
+    },
+    
     patient_id: {
       type: String,
       required: true,
+    },
+
+    age: Number,
+
+    gender: {
+        type: String,
+        enum: ["Male", "Female", "Other"]
     },
     // Raw Inputs
     patient_voice: {
@@ -137,6 +150,10 @@ const patientSchema = new mongoose.Schema(
             "Red",
             "Black"
         ]
+    },
+    triage_priority: {
+      type: Number,
+      default: 0
     }
   },
   {

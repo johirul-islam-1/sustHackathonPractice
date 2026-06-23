@@ -46,11 +46,27 @@ async function updatePatientStatus(
 
   }
 
+  const priorityMap = {
+    Black: 4,
+    Red: 3,
+    Yellow: 2,
+    Green: 1
+  };
+
+  // await Patient.findByIdAndUpdate(
+  //   patientId,
+  //   {
+  //     final_triage:
+  //       finalTriage
+  //   }
+  // );
+
   await Patient.findByIdAndUpdate(
     patientId,
     {
-      final_triage:
-        finalTriage
+      final_triage: finalTriage,
+      triage_priority:
+        priorityMap[finalTriage] || 0
     }
   );
 }

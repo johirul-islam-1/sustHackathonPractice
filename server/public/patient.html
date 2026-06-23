@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Patient</title>
+</head>
+<body>
+
+<h1>Patient Details</h1>
+
+<section>
+  <h2>Voice Input</h2>
+  <form id="voiceForm">
+    <input type="file" name="audio" accept="audio/*" required />
+    <button type="submit">Upload Voice</button>
+  </form>
+  <pre id="voiceResult"></pre>
+</section>
+
+<section>
+  <h2>OCR Input</h2>
+  <form id="ocrForm">
+    <input type="file" name="image" accept="image/*" required />
+    <button type="submit">Upload OCR</button>
+  </form>
+  <pre id="ocrResult"></pre>
+</section>
+
+<section>
+  <h2>Vitals Input</h2>
+  <form id="vitalsForm">
+    <input name="systolic_bp" type="number" placeholder="Systolic BP" />
+    <input name="diastolic_bp" type="number" placeholder="Diastolic BP" />
+    <input name="heart_rate" type="number" placeholder="Heart Rate" />
+    <input name="temperature" type="number" step="0.1" placeholder="Temperature" />
+    <input name="spo2" type="number" placeholder="SpO2" />
+    <input name="blood_glucose" type="number" placeholder="Blood Glucose" />
+    <button type="submit">Save Vitals</button>
+  </form>
+  <pre id="vitalsResult"></pre>
+</section>
+
+<section>
+  <h2>Triage</h2>
+  <button id="triageButton">Run Triage</button>
+  <pre id="triageResult"></pre>
+</section>
+
+<pre id="json"></pre>
+
+<script src="/patient.js"></script>
+
+</body>
+</html>
