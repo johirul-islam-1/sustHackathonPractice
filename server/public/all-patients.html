@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MediTriage — All Patients</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<div id="appbar-mount"></div>
+
+<main class="container">
+
+  <h1 class="page-title">All patients</h1>
+  <p class="page-subtitle">Search and filter the full patient register.</p>
+
+  <section class="card">
+    <div class="search-bar">
+      <input
+        id="search"
+        type="search"
+        placeholder="Search by patient ID…"
+        autocomplete="off"
+      />
+      <select id="statusFilter">
+        <option value="">All status</option>
+        <option value="OPEN">Open</option>
+        <option value="CLOSED">Closed</option>
+      </select>
+      <select id="triageFilter">
+        <option value="">All triage</option>
+        <option value="Red">Red</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Green">Green</option>
+        <option value="Black">Black</option>
+      </select>
+    </div>
+  </section>
+
+  <div id="results" class="patient-list"></div>
+
+</main>
+
+<script src="/ui.js"></script>
+<script src="/all-patients.js"></script>
+</body>
+</html>

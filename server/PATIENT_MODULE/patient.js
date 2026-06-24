@@ -52,6 +52,105 @@ router.get("/open", async (req, res) => {
   res.json(patients);
 });
 
+router.get("/all", async (req, res) => {
+
+  try {
+
+    const patients =
+      await Patient.find()
+        .sort({
+          updatedAt: -1
+        });
+
+    res.json(patients);
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+
+  }
+
+});
+
+function escapeRegex(value) {
+
+  return value.replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
+
+}
+
+router.get("/search", async (req, res) => {
+
+  try {
+
+    const query = {};
+
+    if (req.query.q) {
+
+      const safe =
+        escapeRegex(
+          String(req.query.q).trim()
+        );
+
+      if (safe) {
+        query.patient_id = {
+          $regex: safe,
+          $options: "i"
+        };
+      }
+
+    }
+
+    if (
+      req.query.status === "OPEN" ||
+      req.query.status === "CLOSED"
+    ) {
+      query.status = req.query.status;
+    }
+
+    const triage =
+      req.query.triage;
+
+    if (
+      triage === "Green" ||
+      triage === "Yellow" ||
+      triage === "Red" ||
+      triage === "Black"
+    ) {
+      query.$or = [
+        { final_triage: triage },
+        { triage_score: triage }
+      ];
+    }
+
+    const results =
+      await Patient.find(query)
+        .sort({
+          updatedAt: -1
+        });
+
+    res.json({
+      success: true,
+      total: results.length,
+      results
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      success: false,
+      error: error.message
+    });
+
+  }
+
+});
+
 router.get("/:id", async (req, res) => {
 
   const patient =

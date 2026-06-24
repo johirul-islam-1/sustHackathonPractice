@@ -1,15 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Patients</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MediTriage — Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
 
-<h1>Open Patients</h1>
+<div id="appbar-mount"></div>
 
-<div id="patients"></div>
+<main class="container">
 
+  <h1 class="page-title">Active patients</h1>
+  <p class="page-subtitle">Register new patients and review the queue, sorted by urgency.</p>
+
+  <div class="grid grid-2">
+
+    <section class="card">
+      <div class="card-header">
+        <h2 class="card-title">Register new patient</h2>
+      </div>
+      <p class="card-subtitle">Create a patient record to begin triage.</p>
+
+      <form id="createForm">
+        <div class="field">
+          <label for="patient_id">Patient ID</label>
+          <input
+            id="patient_id"
+            name="patient_id"
+            type="text"
+            placeholder="e.g. P-1042"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="age">Age</label>
+          <input
+            id="age"
+            name="age"
+            type="number"
+            min="0"
+            max="120"
+            placeholder="Years"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label>Gender</label>
+          <div class="gender-pills">
+            <label>
+              <input type="radio" name="gender" value="Male" required />
+              <span>Male</span>
+            </label>
+            <label>
+              <input type="radio" name="gender" value="Female" />
+              <span>Female</span>
+            </label>
+            <label>
+              <input type="radio" name="gender" value="Other" />
+              <span>Other</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          + Register patient
+        </button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2 class="card-title">Patient queue</h2>
+        <a href="/all-patients.html" class="btn btn-ghost">View all →</a>
+      </div>
+      <p class="card-subtitle">Patients waiting or being treated. Red cases appear first.</p>
+      <div id="patients" class="patient-list"></div>
+    </section>
+
+  </div>
+
+</main>
+
+<script src="/ui.js"></script>
 <script src="/app.js"></script>
-
 </body>
 </html>

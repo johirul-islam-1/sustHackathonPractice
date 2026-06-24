@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     const patient = await Patient.findByIdAndUpdate(
       patient_id,
       {
-        ...result.data
+        ...result
       },
       {
         new: true,
@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
 
     res.json({
       success: true,
-      data: result
+      // data: result
     });
   } catch (error) {
     console.log(error)
