@@ -7,3 +7,7 @@ node_modules/
 node_modules
 .agents
 node_modules/
+DOCKER/.dockerignore
+DOCKER/Dockerfile
+DOCKER/docker-compose.yml
+
